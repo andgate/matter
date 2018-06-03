@@ -1,0 +1,82 @@
+name:           matter-language-syntax
+version:        0.0.0
+synopsis:       Matter programming language syntax library
+description:    Purely Functional Systems Language
+category:       Compilers
+homepage:       https://github.com/andgate/matter
+bug-reports:    https://github.com/andgate/matter/issues
+maintainer:     Gabriel Anderson
+license:        MIT
+build-type:     Simple
+cabal-version:  >= 2.0
+
+extra-source-files:
+    CHANGELOG.md
+    LICENSE.md
+    README.md
+    src/Matter/Language/Lex.x
+
+source-repository head
+  type: git
+  location: https://github.com/andgate/matter
+
+library
+  hs-source-dirs:
+      src
+  ghc-options: -Wall -Wincomplete-uni-patterns -Wincomplete-record-updates -fno-warn-name-shadowing -fno-warn-unused-binds -fno-warn-unused-matches -fno-warn-unused-do-bind -fno-warn-orphans
+  build-depends:
+      Earley
+    , aeson
+    , array
+    , base <5
+    , binary
+    , bound
+    , bytes
+    , bytestring
+    , containers
+    , deriving-compat
+    , directory
+    , edit-distance
+    , either
+    , exceptions
+    , extra
+    , filepath
+    , ghc-prim
+    , hashable
+    , lens
+    , lifted-async
+    , lifted-base
+    , ListZipper
+    , mmorph
+    , monad-control
+    , monad-gen
+    , monad-logger
+    , mono-traversable
+    , mtl
+    , multimap
+    , primitive
+    , prettyprinter
+    , prettyprinter-ansi-terminal
+    , reducers
+    , resourcet
+    , safe
+    , streaming-commons
+    , text
+    , these
+    , time
+    , transformers
+    , transformers-base
+    , unbound-generics
+    , unordered-containers
+    , utf8-string
+    , vector
+    , yaml
+  exposed-modules:
+      Matter.Language.Syntax.Location
+      Matter.Language.Syntax.Name
+      Matter.Language.Syntax.Prim
+      Matter.Language.Syntax.Source
+      
+  
+  other-modules:
+  default-language: Haskell2010

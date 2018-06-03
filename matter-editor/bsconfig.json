@@ -1,0 +1,25 @@
+{
+  "name": "matter-editor",
+  "version": "0.1.0",
+  "sources": {
+    "dir" : "src",
+    "subdirs" : true
+  },
+  "package-specs": {
+    "module": "commonjs",
+    "in-source": true
+  },
+  "suffix": ".bs.js",
+  "reason" : {"react-jsx" : 2},
+  "refmt": 3,
+  "bs-dependencies": [
+    "reason-react",
+    "bs-webapi",
+    "bs-fetch",
+    "@glennsl/bs-json"
+  ],
+  "warnings": {
+    "error" : "+101"
+  },
+  "namespace": true
+}
