@@ -11,8 +11,8 @@ S /home/gabe/projects/matter/matter-editor/node_modules/reason-react/lib/ocaml
 B /home/gabe/projects/matter/matter-editor/node_modules/reason-react/lib/ocaml
 S /home/gabe/projects/matter/matter-editor/node_modules/bs-webapi/lib/ocaml
 B /home/gabe/projects/matter/matter-editor/node_modules/bs-webapi/lib/ocaml
-S /home/gabe/projects/matter/matter-editor/node_modules/bs-fetch/lib/ocaml
-B /home/gabe/projects/matter/matter-editor/node_modules/bs-fetch/lib/ocaml
+S /home/gabe/projects/matter/matter-editor/node_modules/bs-axios/lib/ocaml
+B /home/gabe/projects/matter/matter-editor/node_modules/bs-axios/lib/ocaml
 S /home/gabe/projects/matter/matter-editor/node_modules/@glennsl/bs-json/lib/ocaml
 B /home/gabe/projects/matter/matter-editor/node_modules/@glennsl/bs-json/lib/ocaml
 S src
