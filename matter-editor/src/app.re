@@ -3,7 +3,7 @@ type state = {
 };
 
 type action =
-  | Loaded(UserData.user);
+  | Loaded(array(UserData.user));
 
 
 let component = ReasonReact.reducerComponent("App");
@@ -13,15 +13,15 @@ let make = _children => {
   ...component,
 
   initialState: (): state => {
-    userData: [||]
+    users: [||]
   },
 
   didMount: self => {
-    let handleUserLoaded = (userData) => self.send(Loaded(userData));
+    let handleUsersLoaded = (usersData) => self.send(Loaded(usersData));
 
     UserData.fetchUsers()
       |> Js.Promise.then_( userData => {
-          handleUserLoaded(userData);
+          handleUsersLoaded(userData);
           Js.Promise.resolve();
         })
       |> ignore;
@@ -29,14 +29,14 @@ let make = _children => {
 
   reducer: (action, state) => {
     switch action {
-      | Loaded(loadedUser) => ReasonReact.Update({
-          userData: Array.append(state.userData, [|loadedUser|])
+      | Loaded(loadedUsers) => ReasonReact.Update({
+          users: loadedUsers
         })
     };
   },
   
   render: (self) => {
-    let userItem =
+    let userItems =
           Array.map(
             (user: UserData.user) => <UserItem key=user.firstName user=user />,
             self.state.users
@@ -44,7 +44,7 @@ let make = _children => {
 
     <div>
       <h1> (ReasonReact.string("Users")) </h1>
-      {userItem}
+      (ReasonReact.array(userItems))
     </div>;
   },
 };
