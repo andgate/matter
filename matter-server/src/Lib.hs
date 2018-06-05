@@ -12,15 +12,15 @@ import Network.Wai
 import Network.Wai.Handler.Warp
 import Servant
 
-data User = User
-  { userId        :: Int
-  , userFirstName :: String
-  , userLastName  :: String
+
+data Module = Module
+  { moduleName :: String
+  , moduleChildren :: [Module]
   } deriving (Eq, Show)
 
-$(deriveJSON defaultOptions ''User)
+$(deriveJSON defaultOptions ''Module)
 
-type API = "users" :> Get '[JSON] [User]
+type API = "modules" :> Get '[JSON] [Module]
 
 startApp :: IO ()
 startApp = run 8080 app
@@ -32,9 +32,15 @@ api :: Proxy API
 api = Proxy
 
 server :: Server API
-server = return users
+server = return modules
 
-users :: [User]
-users = [ User 1 "Isaac" "Newton"
-        , User 2 "Albert" "Einstein"
-        ]
+modules :: [Module]
+modules = 
+  [ Module "Math" []
+  , Module "String" []
+  , Module "Category"
+      [ Module "Functor" []
+      , Module "Applicative" []
+      , Module "Monad" []
+      ]
+  ]
