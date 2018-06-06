@@ -16,7 +16,8 @@
     "reason-react",
     "bs-webapi",
     "bs-axios",
-    "@glennsl/bs-json"
+    "@glennsl/bs-json",
+    "bs-css"
   ],
   "warnings": {
     "error" : "+101"

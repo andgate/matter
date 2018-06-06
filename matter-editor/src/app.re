@@ -37,18 +37,8 @@ let make = _children => {
   
   render: (self) => {
     switch (self.state.modules) {
-    | None     => <p>(ReasonReact.string("Loading..."))</p>
-    | Some(ms) => {
-        let moduleItems = Array.map(
-            (m: ModuleData.module_) => <ModuleItem modl=m />,
-            ms
-          );
-
-        <div>
-          <h1> (ReasonReact.string("Modules")) </h1>
-          (ReasonReact.array(moduleItems))
-        </div>;
-      }
+    | None     => <ConureUI.Paper />
+    | Some(ms) => <ConureUI.Paper />
     };
     
   },

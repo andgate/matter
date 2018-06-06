@@ -1,4 +1,4 @@
-name:                matter-server
+name:                matter-server-postgresql
 version:             0.1.0.0
 -- synopsis:
 -- description:
@@ -15,32 +15,8 @@ cabal-version:       >=1.10
 
 library
   hs-source-dirs:      src
-  exposed-modules:     Api, App, Models
+  exposed-modules:     Config
   build-depends:       base >= 4.7 && < 5
-                     , aeson
-                     , matter-language-syntax
-                     , monad-control
-                     , monad-logger
-                     , mtl
-                     , natural-transformation
-                     , persistent
-                     , persistent-template
-                     , resource-pool
-                     , servant
-                     , servant-js
-                     , servant-server
-                     , text
-                     , transformers-base
-                     , wai
-                     , wai-extra
-                     , warp
-  default-language:    Haskell2010
-
-executable matter-server-cloud
-  hs-source-dirs:      cloud
-  main-is:             Main.hs
-  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
-  build-depends:       base
                      , matter-server
                      , monad-control
                      , mtl
@@ -50,16 +26,12 @@ executable matter-server-cloud
                      , warp
   default-language:    Haskell2010
 
-executable matter-server-local
-  hs-source-dirs:      local
+executable matter-server
+  hs-source-dirs:      app
   main-is:             Main.hs
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   build-depends:       base
-                     , matter-server
-                     , persistent-sqlite
-                     , monad-logger
-                     , string-conversions
-                     , warp
+                     , matter-server-postgresql
   default-language:    Haskell2010
 
 test-suite matter-server-test
