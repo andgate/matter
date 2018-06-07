@@ -1,4 +1,4 @@
-name:                matter-server
+name:                matter-server-api
 version:             0.1.0.0
 -- synopsis:
 -- description:
@@ -13,53 +13,55 @@ build-type:          Simple
 extra-source-files:  README.md
 cabal-version:       >=1.10
 
+
+Flag Web
+  Description:  Enable web build
+  Default:      False
+
+
 library
+  default-language:    Haskell2010
   hs-source-dirs:      src
-  exposed-modules:     Api, App, Models
+  exposed-modules:     Matter.Server.Api.Item
+                       Matter.Server.Api.Module
+                       Matter.Server.Config
+                       Matter.Server.Lib
+                       Matter.Server.Model.Item
+                       Matter.Server.Model.Module
+                       Matter.Server.Query.Item
+                       Matter.Server.Query.Module
+
   build-depends:       base >= 4.7 && < 5
                      , aeson
+                     , exceptions
                      , matter-language-syntax
                      , monad-control
-                     , monad-logger
                      , mtl
-                     , natural-transformation
-                     , persistent
-                     , persistent-template
-                     , resource-pool
+                     , postgresql-libpq
+                     , selda
+                     , selda-postgresql
+                     , selda-sqlite
                      , servant
                      , servant-js
                      , servant-server
                      , text
+                     , transformers
                      , transformers-base
                      , wai
-                     , wai-extra
                      , warp
-  default-language:    Haskell2010
+  
+  if flag(web)
+    Build-Depends: persistent-postgresql
+    CC-Options: "-DWEB"
+  else
+    build-depends: persistent-sqlite
 
-executable matter-server-cloud
-  hs-source-dirs:      cloud
+executable matter-server
+  hs-source-dirs:      app
   main-is:             Main.hs
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N
   build-depends:       base
-                     , matter-server
-                     , monad-control
-                     , mtl
-                     , persistent-postgresql
-                     , read-env-var
-                     , wai
-                     , warp
-  default-language:    Haskell2010
-
-executable matter-server-local
-  hs-source-dirs:      local
-  main-is:             Main.hs
-  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
-  build-depends:       base
-                     , matter-server
-                     , persistent-sqlite
-                     , monad-logger
-                     , string-conversions
-                     , warp
+                     , matter-server-api
   default-language:    Haskell2010
 
 test-suite matter-server-test

@@ -1,4 +1,2 @@
-packages: matter-server/
-					matter-server-sqlite/
-					matter-server-postgresql/
+packages: matter-server-api/
 		      matter-language-syntax/
