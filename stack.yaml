@@ -1,0 +1,9 @@
+resolver: lts-11.12
+
+packages:
+- matter-language
+- matter-service
+- matter-server
+
+local-bin-path: /opt/bin
+system-ghc: true

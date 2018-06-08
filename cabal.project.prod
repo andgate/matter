@@ -1,4 +1,3 @@
 packages: matter-language/
 		      matter-service/
-					matter-daemon/
 					matter-server
