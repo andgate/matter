@@ -2,11 +2,11 @@
   "name": "matter-editor",
   "version": "0.1.0",
   "sources": {
-    "dir" : "src",
+    "dir" : "frontend",
     "subdirs" : true
   },
   "package-specs": {
-    "module": "commonjs",
+    "module": "es6",
     "in-source": false
   },
   "suffix": ".bs.js",

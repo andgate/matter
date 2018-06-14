@@ -1,2 +1,7 @@
 node_modules
 lib
+public/bundle.js
+.merlin
+Cargo.lock
+target
+package-lock.json

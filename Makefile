@@ -1,12 +1,11 @@
-build-stage: new-stage
+stage-docker:
 	rm -Rf .docker-stage
 	mkdir .docker-stage
-	cp cabal.project.prod .docker-stage/cabal.project
 	cp -r matter-language .docker-stage/
 	cp -r matter-service .docker-stage/
 	cp -r matter-server .docker-stage/
 
-build-server: build-stage
+build-server: stage-docker
 	docker build -t matter-server:app .
 
 run-server: build-server

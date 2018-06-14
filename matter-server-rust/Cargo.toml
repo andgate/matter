@@ -1,0 +1,7 @@
+[package]
+name = "matter-server-rust"
+version = "0.1.0"
+authors = ["Gabriel Anderson <gabe4k@gmail.com>"]
+
+[dependencies]
+actix-web = "0.6"

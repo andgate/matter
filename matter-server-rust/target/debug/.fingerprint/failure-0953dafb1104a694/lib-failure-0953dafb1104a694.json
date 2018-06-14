@@ -1,0 +1,1 @@
+{"rustc":14116989018355672531,"features":"[\"backtrace\", \"default\", \"derive\", \"failure_derive\", \"std\"]","target":9690947493115534481,"profile":2479238963835404001,"path":3259222562079781029,"deps":[["backtrace v0.3.8",7127095496945653361],["failure_derive v0.1.1",2773465896231735497]],"local":[{"Precalculated":"0.1.1"}],"rustflags":[],"epoch":"Epoch2015"}
