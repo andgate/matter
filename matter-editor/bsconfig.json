@@ -17,7 +17,8 @@
     "bs-webapi",
     "bs-axios",
     "@glennsl/bs-json",
-    "bs-css"
+    "bs-css",
+    "bs-glamor"
   ],
   "warnings": {
     "error" : "+101"

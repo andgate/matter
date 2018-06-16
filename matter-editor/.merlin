@@ -17,10 +17,14 @@ S /home/gabe/projects/matter/matter-editor/node_modules/@glennsl/bs-json/lib/oca
 B /home/gabe/projects/matter/matter-editor/node_modules/@glennsl/bs-json/lib/ocaml
 S /home/gabe/projects/matter/matter-editor/node_modules/bs-css/lib/ocaml
 B /home/gabe/projects/matter/matter-editor/node_modules/bs-css/lib/ocaml
+S /home/gabe/projects/matter/matter-editor/node_modules/bs-glamor/lib/ocaml
+B /home/gabe/projects/matter/matter-editor/node_modules/bs-glamor/lib/ocaml
 S frontend
 B lib/bs/frontend
 S frontend/Component
 B lib/bs/frontend/Component
 S frontend/ConureUI
 B lib/bs/frontend/ConureUI
+S frontend/ConureUI/Animated
+B lib/bs/frontend/ConureUI/Animated
 ####BSB GENERATED: NO EDIT}

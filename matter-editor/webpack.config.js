@@ -7,7 +7,7 @@ module.exports = {
   entry: './frontend/main.re',
   output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, '.'),
+        path: path.resolve(__dirname, './public'),
   },
   mode: isProd ? 'production' : 'development',
   module: {

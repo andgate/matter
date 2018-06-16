@@ -1,7 +1,10 @@
 let component = ReasonReact.statelessComponent("ExprView");
 
-let make = (~exp: Syntax.exp, _children) => {
+let make = (~zexp: Syntax.zexp, ~onKeyDown, _children) => {
   ...component,
   
-  render: (self) => {Syntax.render(exp)},
+  render: (self) => 
+    <div tabIndex=0 autoFocus=true onKeyDown={onKeyDown}>
+      {Syntax.render(zexp)}
+    </div>,
 };
