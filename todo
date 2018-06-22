@@ -1,0 +1,7 @@
+::Todo::
+- Pretty expressions (write ReasonFlex, pretty libraries for reason ml)
+- Expression construction (floating search box ++ text fields for node editing)
+- Expand syntax (maybe dependent)
+- Type checker on zipper, backed by local data
+- Module system, package server
+- edit session server, OT
