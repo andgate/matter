@@ -1,6 +1,8 @@
 type state = {
   modules: option(array(ModuleData.module_)),
-  currExp: Syntax.ezip
+  root: Syntax.inode,
+  ctxmap: Syntax.zipperMap,
+  cursor: int
 };
 
 type action =
@@ -11,11 +13,11 @@ type action =
 
 let exampleExp = 
   Syntax.(
-    ELam
-    ( "x"
-    , EApp
-      ( EVar("f")
-      , EVar("x")
+    elam(
+      [pvar("x")]
+    , eapp(
+        evar("f")
+      , [evar("x"), evar("y"), evar("z")]
       )
     )
   );
@@ -27,8 +29,16 @@ let make = _children => {
   ...component,
 
   initialState: (): state => {
-    modules: None,
-    currExp: Syntax.zipE(exampleExp)
+    let (n, root) = Syntax.(indexRoot(ExpNode(ECursor(exampleExp))));
+    let ctxmap = Syntax.buildContextMap(root, n);
+    let rootId = 0;
+    let (root', _) = ctxmap[rootId];
+
+    { modules: None,
+      root: root',
+      ctxmap: ctxmap,
+      cursor: rootId
+    }
   },
 
   didMount: self => {
@@ -45,30 +55,50 @@ let make = _children => {
   reducer: (action, state) => {
     switch action {
       | Loaded(loadedModules) => ReasonReact.Update({
-          modules: Some(loadedModules),
-          currExp: state.currExp
-        })
-      | KeyDown(38) => ReasonReact.Update({
-          modules: state.modules,
-          currExp: Syntax.goUp(state.currExp)
+          ...state, modules: Some(loadedModules)
         })
       
-      | KeyDown(40) => ReasonReact.Update({
-          modules: state.modules,
-          currExp: Syntax.goDown(state.currExp)
-        })
+      | KeyDown(37) =>  /* Move Left */
+          let z = Syntax.goLeft(state.ctxmap[state.cursor]);
+          let (node, ctx) = z;
+          let root = Syntax.unzip(z);
+          ReasonReact.Update({
+            ...state
+          , root: root
+          , cursor: Syntax.getNodeIndex(node)
+          })
+
+      | KeyDown(38) => /* Move Up */
+          let z = Syntax.goUp(state.ctxmap[state.cursor]);
+          let (node, ctx) = z;
+          let root = Syntax.unzip(z);
+          ReasonReact.Update({
+            ...state
+          , root: root
+          , cursor: Syntax.getNodeIndex(node)
+          })
       
-      | KeyDown(37) => ReasonReact.Update({
-          modules: state.modules,
-          currExp: Syntax.goLeft(state.currExp)
-        })
-      
-      | KeyDown(39) => ReasonReact.Update({
-          modules: state.modules,
-          currExp: Syntax.goRight(state.currExp)
-        })
+      | KeyDown(39) =>  /* Move Right */
+          let z = Syntax.goRight(state.ctxmap[state.cursor]);
+          let (node, ctx) = z;
+          let root = Syntax.unzip(z);
+          ReasonReact.Update({
+            ...state
+          , root: root
+          , cursor: Syntax.getNodeIndex(node)
+          })
+
+      | KeyDown(40) =>  /* Move Down */
+          let z = Syntax.goDown(state.ctxmap[state.cursor]);
+          let (node, ctx) = z;
+          let root = Syntax.unzip(z);
+          ReasonReact.Update({
+            ...state
+          , root: root
+          , cursor: Syntax.getNodeIndex(node)
+          })
     };
   },
   
-  render: (self) => <ExprView zexp=Syntax.unzipZ(self.state.currExp) onKeyDown=( event => self.send(KeyDown( ReactEventRe.Keyboard.which(event) )) ) />,
+  render: (self) => <ExprView root=self.state.root cursor=self.state.cursor onKeyDown=( event => self.send(KeyDown( ReactEventRe.Keyboard.which(event) )) ) />,
 };

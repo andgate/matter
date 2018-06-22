@@ -1,13 +1,13 @@
 type action =
 	| Move(dir)
-	| Construct(Syntax.exp)
+	| Construct(Syntax.inode)
 	| Del
 
 and dir = 
 	| Parent
 	| Child
-	| CrossLeft
-	| CrossRight;
+	| SiblingLeft
+	| SiblingRight;
 
 /*
 let handleAction = (a: action, rootE: Syntax.exp) =>

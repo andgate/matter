@@ -2,7 +2,9 @@ open Css;
 
 let textStyle = style([
 			display(flexBox),
-			backgroundColor(white),
+			flex(1),
+			flexGrow(1),
+			flexBasis(auto)
 		]);
 
 /* still in Greeting.re */
